@@ -45,16 +45,15 @@ public class CSVManager {
                 // methods come from userInput
              // entry is the UserInput object that we named entry
                 writer.write(
-                    entry.getDate() + "," +
-                    entry.getBedtime() + "," +
-                    entry.getWakeTime() + "," +
+                    entry.getDate() + "," +                   
                     entry.getWakeUps() + "," +
                     entry.getSleepQuality() + "," +
-                    entry.getMood() + "," +
-                    entry.getDream() + "\n"
+                    entry.getEnergyLevel() + "," +
+                    entry.getDream() + "\n"  // new line 
                 );
             }
-
+            // catch the exceptions when theres errors print message
+            // instead of crashing file
         } catch (IOException e) {
             System.out.println("Error saving entries.");
         }
@@ -84,12 +83,10 @@ public class CSVManager {
                 // bedtime etc...
                 UserInput entry = new UserInput(
                         data[0],                         // date str
-                        data[1],                         // bedtime str
-                        data[2],                         // wake time str
-                        Integer.parseInt(data[3]),       // wake ups int
-                        Integer.parseInt(data[4]),       // sleep quality int
-                        data[5],                         // mood str
-                        data[6]                          // dream str
+                        Integer.parseInt(data[2]),       // wake ups int
+                        Integer.parseInt(data[3]),       // sleep quality int
+                        data[4],                         // energy str
+                        data[5]                          // dream str
                 );
                 // after reading each entry list becomes [entry1, entry2 ... ] etc
                 entries.add(entry);
@@ -100,7 +97,7 @@ public class CSVManager {
         } catch (Exception e) {
             System.out.println("Error loading entries.");
         }
-        // returns loaded entires 
+        // returns loaded entires
         // ArrayList<SleepEntry> entries =
       //   csv.loadEntries();
         return entries;
@@ -109,8 +106,8 @@ public class CSVManager {
 
 
 // user logs sleep example:
-//SleepEntry e1 =
-//new SleepEntry(
+//UserEntry e1 =
+//new UserEntry(
 //    "2025-11-01",
 //    "10:30 PM",
 //    "6:45 AM",
@@ -124,10 +121,6 @@ public class CSVManager {
 
 // this is what would be in csv:
 // 2025-11-01,10:30 PM,6:45 AM,2,8,Happy,Flying
-
-// to load later on:
-//ArrayList<SleepEntry> entries =
-//csv.loadEntries();
 
 
 
