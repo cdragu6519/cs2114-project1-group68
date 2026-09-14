@@ -29,4 +29,5 @@ Navigate to the root directory of the project and follow these steps:
 ### Option 2: Using the Provided Script (Optional Quick Run)
 If you are using Java 11 or newer and your `Main.java` doesn't strictly depend on separate manual compilation steps for basic execution, you can sometimes run the entry point directly, though standard compilation (Option 1) is preferred.
 
+<img src="/home/cassie/Pictures/Screenshots/systemDiag.png" alt="App Screenshot" width="500">
 
