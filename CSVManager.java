@@ -1,4 +1,4 @@
-
+package sleepify;
 // for representing a file on computer
 // for example File file = new File("sleepData.csv");
 // this would give us a file called sleepData.csv
@@ -45,11 +45,11 @@ public class CSVManager {
                 // methods come from userInput
              // entry is the UserInput object that we named entry
                 writer.write(
-                    entry.getDate() + "," +                   
-                    entry.getWakeUps() + "," +
-                    entry.getSleepQuality() + "," +
-                    entry.getEnergyLevel() + "," +
-                    entry.getDream() + "\n"  // new line 
+                    entry.getSleepTime()+ "," +                   
+                    entry.getWokenUp() + "," +
+                    entry.getSleepRating() + "," +
+                    entry.getEnergy() + "," +
+                    entry.getDreamLog() + "\n"  // new line 
                 );
             }
             // catch the exceptions when theres errors print message
@@ -82,7 +82,7 @@ public class CSVManager {
                 // gets the csv data into numbered format, 0 is date, 1 is
                 // bedtime etc...
                 UserInput entry = new UserInput(
-                        data[0],                         // date str
+                        Integer.parseInt(data[0]),                         // date str
                         Integer.parseInt(data[2]),       // wake ups int
                         Integer.parseInt(data[3]),       // sleep quality int
                         data[4],                         // energy str
@@ -121,6 +121,7 @@ public class CSVManager {
 
 // this is what would be in csv:
 // 2025-11-01,10:30 PM,6:45 AM,2,8,Happy,Flying
+
 
 
 
