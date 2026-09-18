@@ -9,7 +9,7 @@ public class MainMenu {
     
         private StoreAllUserInput storeAllUserInput;
         private InputValidator inputValidator;
-      //  private SleepAnalyzer sleepAnalyzer;
+        private SleepAnalyzer sleepAnalyzer;
         private CSVManager csvManager;
         private Scanner scanner;
  
@@ -19,8 +19,8 @@ public class MainMenu {
             
             storeAllUserInput = new StoreAllUserInput();
             inputValidator = new InputValidator();
-           // sleepAnalyzer = new SleepAnalyzer();
-          //  csvManager = new CSVManager();
+            sleepAnalyzer = new SleepAnalyzer(storeAllUserInput);
+            csvManager = new CSVManager("sleepData.csv");
             scanner = new Scanner(System.in);
             
         }
@@ -48,9 +48,9 @@ public class MainMenu {
                     case "1":
                         createEntry();
                         break;
-                //    case "2":
-                 //       viewStats();
-                      //  break;
+                    case "2":
+                        viewStats();
+                        break;
         //add exit case
                     case "3":
                         run = false;
@@ -68,7 +68,7 @@ public class MainMenu {
         
         public void createEntry() {
             boolean sleepCheck = false;
-            Double sleepTimeEntry = 0.0;
+            int sleepTimeEntry = 0;
             boolean wokenUpCheck = false;
             int wokenUpEntry = 0;
             boolean sleepRatingCheck = false;
@@ -84,7 +84,7 @@ public class MainMenu {
             
             while (sleepCheck == false) {
                 System.out.println("Please enter the amount of sleep (to the nearest hour) you got last night: ");
-                sleepTimeEntry = scanner.nextDouble();
+                sleepTimeEntry = scanner.nextInt();
                 if (inputValidator.validateSleepHour(sleepTimeEntry)) {
                     sleepCheck = true;
                 }
@@ -121,37 +121,34 @@ public class MainMenu {
             
             UserInput entry = new UserInput(sleepTimeEntry,wokenUpEntry,sleepRatingEntry,energyEntry,"0");
             
-     //       storeAllUserInput.addEntry(entry);
+            storeAllUserInput.addEntry(entry);
             
             System.out.println("Awesome! Your last night sleep was safely recorded.");
         }
         
         
-       // public void viewStats() {
+        public void viewStats() {
+         ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
             
-            
-        //    ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
-            
-        //    if (sleepEntries.isEmpty()) {
-        //        System.out.println("Sorry, we currently have no sleep data "
-        //            + "from you. Come back for your statistics after seven days!");
-        //    }
-            
-        //    System.out.println("");
-         //   System.out.println("Welcome to your sleep summary.");
-         //   System.out.println("");
-         //   System.out.println("Your average sleep for the past seven days is " + ((Object)sleepEntries).getAverageSleep());
-            
-       // }
+         if (sleepEntries.isEmpty()) {
+             System.out.println("Sorry, we currently have no sleep data " 
+                 + "from you. Come back for your statistics after seven days!");
+             }
+         
+         System.out.println("Welcome to your sleep summary.");
+         sleepAnalyzer.averageSleep();
+         sleepAnalyzer.highestSleepDay();
+         sleepAnalyzer.lowestSleepDay();
+         }
         
         
- //       public void saveRecords() {
-     //       ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
+        public void saveRecords() {
+            ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
     
-    //        csvManager.saveEntries(sleepEntries);
+            csvManager.saveEntries(sleepEntries);
             
-    //        System.out.println("Your sleep records have been saved! Sweet dreams!");
-  //      }
+            System.out.println("Your sleep records have been saved! Sweet dreams!");
+        }
         
         public static void main(String[] args) {
             MainMenu menu = new MainMenu();
