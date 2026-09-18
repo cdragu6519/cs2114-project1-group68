@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class StoreAllUserInput
 {
     private ArrayList<UserInput> entries;
+    private CSVManager csvManager;
  
     
     // ----------------------------------------------------------
@@ -21,6 +22,7 @@ public class StoreAllUserInput
      */
     public StoreAllUserInput() {
         entries = new ArrayList<>();
+        csvManager = new CSVManager("sleepData.csv");
     }
     
    
@@ -32,6 +34,10 @@ public class StoreAllUserInput
     public void addEntry(UserInput entry) {
         if (entry != null) {
             entries.add(entry);
+            
+            //save the updated list after added
+            csvManager.saveEntries(entries);
+            
         }
         else {
             System.out.println("Entry cannot be added");
