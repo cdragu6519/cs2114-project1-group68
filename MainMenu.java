@@ -121,7 +121,7 @@ public class MainMenu {
             
             UserInput entry = new UserInput(sleepTimeEntry,wokenUpEntry,sleepRatingEntry,energyEntry,"0");
             
-            storeAllUserInput.addEntry(entry);
+     //       storeAllUserInput.addEntry(entry);
             
             System.out.println("Awesome! Your last night sleep was safely recorded.");
         }
@@ -145,13 +145,13 @@ public class MainMenu {
        // }
         
         
-        public void saveRecords() {
-            ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
+ //       public void saveRecords() {
+     //       ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
     
-            csvManager.saveEntries(sleepEntries);
+    //        csvManager.saveEntries(sleepEntries);
             
-            System.out.println("Your sleep records have been saved! Sweet dreams!");
-        }
+    //        System.out.println("Your sleep records have been saved! Sweet dreams!");
+  //      }
         
         public static void main(String[] args) {
             MainMenu menu = new MainMenu();
