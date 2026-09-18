@@ -6,19 +6,20 @@
 *  @author Yug Patel
 *  @version Sep 14, 2026
 */
+package sleepify;
 
 import java.util.ArrayList;
 public class SleepAnalyzer
 {
     //~ Fields ................................................................
-    ArrayList<Double> sleepData = new ArrayList<>();
+    private StoreAllUserInput sleepData;
     
     //~ Constructors ..........................................................
     /**
      * Create a new SleepAnalyzer object.
      * @param sleepData data by the user
      */
-    public SleepAnalyzer(ArrayList<Double> sleepData)
+    public SleepAnalyzer(StoreAllUserInput sleepData)
     {
         this.sleepData = sleepData;
     }
@@ -30,12 +31,19 @@ public class SleepAnalyzer
      */
     public void averageSleep()
     {
+        ArrayList<UserInput> entries = sleepData.getEntries();
+        
         double hours = 0;
-        for (int i = sleepData.size() - 7; i != sleepData.size(); i++)
+        int start = Math.max(0, entries.size() - 7);
+        
+        for (int i = start; i < entries.size(); i++)
         {
-            hours += sleepData.get(i);
+            hours += entries.get(i).getSleepTime();
         }
-        System.out.println("Average Sleep for Past 7 Days: " + (hours/7));
+        int numberOfDays = entries.size() - start;
+        
+        System.out.println("Average Sleep for Past " + numberOfDays + " Days: " 
+            + (hours/numberOfDays));
     }
     
     /**
@@ -43,17 +51,20 @@ public class SleepAnalyzer
      */
     public void highestSleepDay()
     {
+        ArrayList<UserInput> entries = sleepData.getEntries();
+        int start = Math.max(0, entries.size() - 7); 
         int highestDay = 0;
         double highestHours = 0;
-        for (int i = sleepData.size() - 7; i != sleepData.size(); i++)
+        
+        for (int i = start; i < entries.size(); i++)
         {
-            if (sleepData.get(i) > highestHours)
+            if (entries.get(i).getSleepTime() > highestHours)
             {
                 highestDay = i;
-                highestHours = sleepData.get(i);
+                highestHours = entries.get(i).getSleepTime();
             }
         }
-        System.out.println("Highest sleep day in past 7 days is " + highestDay);
+        System.out.println("Highest sleep day is " + (highestDay + 1));
     }
     
     /**
@@ -61,16 +72,19 @@ public class SleepAnalyzer
      */
     public void lowestSleepDay()
     {
+        ArrayList<UserInput> entries = sleepData.getEntries();
+        int start = Math.max(0, entries.size() - 7); 
         int lowestDay = 0;
         double lowestHours = 0;
-        for (int i = sleepData.size() - 7; i != sleepData.size(); i++)
+        
+        for (int i = start; i < entries.size(); i++)
         {
-            if (sleepData.get(i) < lowestHours)
+            if (entries.get(i).getSleepTime() < lowestHours)
             {
                 lowestDay = i;
-                lowestHours = sleepData.get(i);
+                lowestHours = entries.get(i).getSleepTime();
             }
         }
-        System.out.println("Lowest sleep day in past 7 days is " + lowestDay);
+        System.out.println("Lowest sleep day is " + (lowestDay + 1));
     }
 }
