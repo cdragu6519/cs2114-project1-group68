@@ -1,4 +1,6 @@
 // -------------------------------------------------------------------------
+package sleepify;
+
 /**
  *  Validates the input of the user.
  *  Creates different methods to make sure all the entries by the user is valid.
