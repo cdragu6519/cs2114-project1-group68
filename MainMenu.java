@@ -68,7 +68,7 @@ public class MainMenu {
         
         public void createEntry() {
             boolean sleepCheck = false;
-            int sleepTimeEntry = 0;
+            Double sleepTimeEntry = 0.0;
             boolean wokenUpCheck = false;
             int wokenUpEntry = 0;
             boolean sleepRatingCheck = false;
@@ -84,7 +84,7 @@ public class MainMenu {
             
             while (sleepCheck == false) {
                 System.out.println("Please enter the amount of sleep (to the nearest hour) you got last night: ");
-                sleepTimeEntry = scanner.nextInt();
+                sleepTimeEntry = scanner.nextDouble();
                 if (inputValidator.validateSleepHour(sleepTimeEntry)) {
                     sleepCheck = true;
                 }
