@@ -55,7 +55,7 @@ public class CSVManager {
             // catch the exceptions when theres errors print message
             // instead of crashing file
         }
-        catch (IOException e) {
+        catch (IOException exception) {
             System.out.println("Error saving entries.");
         }
     }
@@ -105,7 +105,7 @@ public class CSVManager {
 
             // deals w missing data, invalid input etc
         }
-        catch (Exception e) {
+        catch (Exception exception) {
             System.out.println("Error loading entries.");
         }
 
