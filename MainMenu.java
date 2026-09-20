@@ -30,14 +30,18 @@ public class MainMenu {
             double inputD = 0.0;
             int inputI = 0;
             
-            // first if block of code checks if we are trying to scan a double
-            // second if block calls inputValidator based on the specific question in order to make sure the input is fits question-based criteria (for sleepTime, input must be less than 24 hours
-            // case 1) first condition passes, second one fails (returns false, reprompts user with question-based feedback
-            // case 2) first condition passes, second passes (returns false, reprompts user with data-type feedback
-            // case 3) first condition fails, (returns false, reprompts user with data-type feedback
-            // case 4) first condition passes, second condition passes (returns true, now it can be stored as a parameter to then be stores in a UserInput instance.
-            //***** THIS VALIDATETYPE METHOD IS USED IN USERENTRY FOR EACH PARAEMETER
-            //***** THIS LOGIC IS APPLIED FOR EXPECTED STRING, DOUBLE, AND INT PARAMETERS.
+
+                
+             // first if block of code checks if we are trying to scan a double
+                // second if block calls inputValidator based on the specific question in order to make sure the input is fits question-based criteria (for sleepTime, input must be less than 24 hours)
+                // third if block actually checks if the input is valid
+                // case 1) first condition passes, second one fails (returns false, reprompts user with question-based feedback
+                // case 2) first condition passes, second passes (returns false, reprompts user with data-type feedback
+                // case 3) first condition fails, (returns false, reprompts user with data-type feedback
+                // case 4) first condition passes, second condition passes (returns true, now it can be stored as a parameter to then be stores in a UserInput instance.
+                //***** THIS VALIDATETYPE METHOD IS USED IN USERENTRY FOR EACH PARAEMETER
+                //***** THIS LOGIC IS APPLIED FOR EXPECTED STRING, DOUBLE, AND INT PARAMETERS.
+            
             
             if (type.equals("double")) {
                 try {
@@ -51,7 +55,7 @@ public class MainMenu {
                     }
                     return true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Sorry, your input isn't a number. Please try again: ");
+                    System.out.println("Sorry, your input isn't a number/skip. Please try again: ");
                     return false;
                 }
             }
@@ -64,7 +68,7 @@ public class MainMenu {
                     inputI = Integer.parseInt(input);
                     if (question.equals("validateSleepRating")) {
                         if(!inputValidator.validateSleepRating(inputI)) {
-                            System.out.println("Sorry, validation for sleep Rating is failing");
+                            System.out.println("Sorry, your input isn't in our range. Please try again: ");
                             return false;
                         }    
                         
@@ -72,14 +76,14 @@ public class MainMenu {
                     
                     if (question.equals("validateWokenUp")) {
                         if(!inputValidator.validateSleepRating(inputI)) {
-                            System.out.println("sorry, validation for naps is failing");
+                            System.out.println("Sorry, you have entered a number out of range (0-25). Please try again: ");
                             return false;
                         }    
                         
                     }
                     return true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Sorry, your input isn't a number. Please try again: ");
+                    System.out.println("Sorry, your input isn't a number/skip. Please try again: ");
                     return false;
                 }
             }
@@ -89,22 +93,17 @@ public class MainMenu {
                     if(question.equals("validateEnergyLevel")) {
                         
                         if (!inputValidator.validateEnergyLevel(input)) {
-                            System.out.println("sorry, validation for ENERGY is failing, please reenter");
+                            System.out.println("Sorry, your energy level isn't one of the options. Please try again: ");
                             return false;
                         }
                         
                         return true;
                     }
-                
             }
-            
             return false;
             
             //all validation is working, above return statement isn't needed but avoids Syntax errors
         }
-
-        
-        
         
         public void startProgram() {
             boolean run = true;
@@ -119,6 +118,7 @@ public class MainMenu {
                 System.out.println("2:   View Sleep Statistics");
                 System.out.println("3:   Save Sleep Records");
                 System.out.println("4:   Exit");
+                System.out.println(" ");
                 System.out.println("Your Selection: ");
                 String selection = scanner.nextLine();
                 
@@ -144,45 +144,48 @@ public class MainMenu {
         }
         
         public void createEntry() {
-            boolean sleepCheck = false;
-            double sleepTimeEntry = 0;
-            boolean wokenUpCheck = false;
-            int wokenUpEntry = 0;
-            boolean sleepRatingCheck = false;
-            int sleepRatingEntry = 0;
-            boolean energyCheck = false;
-            String energyEntry = "low";
             
+            //booleans to help check if the entries are valid. if false, runs validateType(), if true, exits assigned loop.
+            
+            boolean sleepCheck = false;
+            boolean wokenUpCheck = false;
+            boolean sleepRatingCheck = false;
+            boolean energyCheck = false;
+            
+            //stores input data once validated
+            
+            double sleepTimeEntry = 0;
+            int wokenUpEntry = 0;
+            int sleepRatingEntry = 0;
+            String energyEntry = " ";
+            String dreamLogEntry;
+            
+            //String to send to validateType() that contains raw user input data.
             
             String userInput = "";
-           // boolean dreamLogCheck = false;
-         //   String dreamLogEntry;
             
+            //greets user after selecting to create an entry
             
             System.out.println("Welcome! Please enter, or type skip, to answer the following questions: " );
             System.out.println("");
             
+            // while loop outer checks to see if entry is valid based off of sleepCheck
+            // userInput stores data after scanner reads the user's input
+            // while loop inner uses validateType, with questin-specific parameters, in order to loop and make sure the data entry is a number
+            // after while loop inner validates, sleepTimeEntry officially stores the data
+            // sleepCheck is switched to true, and the program moves to the next question.
+            // logic is applied for all questions except dream log.
+            
             while (sleepCheck == false) {
-                System.out.println("Please enter the amount of sleep (to the nearest hour) you got last night: ");
-                
-                
-                
-                
+                System.out.println("Please enter the amount of sleep (to the nearest hour) you got last night: "); 
                 userInput = scanner.nextLine();
-                
-                while (!validateType(userInput, "double","validateSleepHour")) {
-                    
-                    userInput = scanner.nextLine();
-                    
+  
+                while (!validateType(userInput, "double","validateSleepHour")) {                    
+                    userInput = scanner.nextLine();                    
                 }
-                
-                
                 sleepTimeEntry = Double.parseDouble(userInput);
-                
                 sleepCheck = true;
-                
                 System.out.println("");
-                
             }
             
             System.out.println("");
@@ -190,75 +193,67 @@ public class MainMenu {
             
             while (wokenUpCheck == false) {
                 System.out.println("Please enter the amount of times you woke up (whole number): ");
-                
-                
-                
-                
                 userInput = scanner.nextLine();
-                
-                while (!validateType(userInput, "int","validateWokenUp")) {
-                    
-                    userInput = scanner.nextLine();
-                    
+          
+                while (!validateType(userInput, "int","validateWokenUp")) { 
+                    userInput = scanner.nextLine();  
                 }
-                
-                
                 wokenUpEntry = Integer.parseInt(userInput);
-                
                 wokenUpCheck = true;
-                
                 System.out.println("");
             }
             
-            
+            System.out.println("");
             
             
             while (sleepRatingCheck == false) {
                 System.out.println("Please rate your sleep from 0-10 (whole number): ");
-                
-                
-                
-                
                 userInput = scanner.nextLine();
-                
+            
                 while (!validateType(userInput, "int","validateSleepRating")) {
-                    
-                    userInput = scanner.nextLine();
-                    
+                    userInput = scanner.nextLine(); 
                 }
                 
                 
                 sleepRatingEntry = Integer.parseInt(userInput);
-                
                 sleepRatingCheck = true;
-                
                 System.out.println("");
             }
             
+            System.out.println("");
+            
+            
             while (energyCheck == false) {
                 System.out.println("Please describe your energy level using low, medium, or high (no spaces): ");
-                
-                
-                
-                
                 userInput = scanner.nextLine();
+
                 
                 while (!validateType(userInput, "String","validateEnergyLevel")) {
-                    
-                    userInput = scanner.nextLine();
-                    
+                    userInput = scanner.nextLine();  
                 }
                 
                 
                 energyEntry = userInput;
-                
                 energyCheck = true;
-                
                 System.out.println("");
             }
-
-            UserInput entry = new UserInput(sleepTimeEntry,wokenUpEntry,sleepRatingEntry,energyEntry,"0");
+            
+            
+            System.out.println("");
+            
+            //simple dream log prompt
+            
+            System.out.println("Please enter any info of dreams you have below: ");
+            dreamLogEntry = scanner.nextLine();
+            
+            //creates UserInput instance
+            
+            UserInput entry = new UserInput(sleepTimeEntry,wokenUpEntry,sleepRatingEntry,energyEntry, dreamLogEntry);
+            
+            //adds entry
             storeAllUserInput.addEntry(entry);
+            
+            //informs user that the entry is stored
             System.out.println("Awesome! Your last night sleep was safely recorded.");
         }
 
