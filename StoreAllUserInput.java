@@ -21,8 +21,8 @@ public class StoreAllUserInput
      * the all time UserInputs  
      */
     public StoreAllUserInput() {
-        entries = new ArrayList<>();
         csvManager = new CSVManager("sleepData.csv");
+        entries = csvManager.loadEntries(); 
     }
     
    
