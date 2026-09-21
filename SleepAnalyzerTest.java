@@ -65,4 +65,33 @@ public class SleepAnalyzerTest
         sleepAnalyzer.lowestSleepDay();
         assertEquals("Lowest sleep day is 1", output.toString().trim());
     }
+     
+    // ----------------------------------------------------------
+    /**
+     * Test recommendation system normal 
+     */
+    @Test
+    public void testRecommendationSystemNormal() 
+    {
+        StoreAllUserInput store = new StoreAllUserInput();
+        UserInput entry = new UserInput(6.0, 1, 8, "low", "dream");
+        store.addEntry(entry);
+        SleepAnalyzer analyzer = new SleepAnalyzer(store);
+
+        analyzer.recommendationSystem();
+    }
+
+     // ----------------------------------------------------------
+    /**
+     * test recommendation system bad input
+     */
+    @Test
+    public void testRecommendationSystemBadInput()
+    {
+        StoreAllUserInput store = new StoreAllUserInput();
+        SleepAnalyzer analyzer = new SleepAnalyzer(store);
+        
+        analyzer.recommendationSystem();
+
+    }    
 }  
