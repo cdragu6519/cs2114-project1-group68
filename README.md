@@ -22,7 +22,7 @@ This application collects and analyzes sleep-related data entered by users. It p
 
 ```bash
 javac *.java
-
+```
 4. Then run the MainMenu.java class
 
 ## Link for this repo 
