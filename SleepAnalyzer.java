@@ -42,7 +42,7 @@ public class SleepAnalyzer
         }
         int numberOfDays = entries.size() - start;
         
-        System.out.println("Average Sleep for Past " + numberOfDays + " Days: " 
+        System.out.println("Average Sleep for Past " + numberOfDays + " Days is " 
             + Math.round(hours/numberOfDays) + " hours");
     }
     
@@ -53,8 +53,8 @@ public class SleepAnalyzer
     {
         ArrayList<UserInput> entries = sleepData.getEntries();
         int start = Math.max(0, entries.size() - 7); 
-        int highestDay = 0;
-        double highestHours = 0;
+        int highestDay = start;
+        double highestHours = entries.get(start).getSleepTime();
         
         for (int i = start; i < entries.size(); i++)
         {
@@ -64,7 +64,7 @@ public class SleepAnalyzer
                 highestHours = entries.get(i).getSleepTime();
             }
         }
-        System.out.println("Highest sleep day is " + (highestDay + 1));
+        System.out.println("Highest Sleep Hours were on Day " + (highestDay + 1));
     }
     
     /**
@@ -74,8 +74,8 @@ public class SleepAnalyzer
     {
         ArrayList<UserInput> entries = sleepData.getEntries();
         int start = Math.max(0, entries.size() - 7); 
-        int lowestDay = 0;
-        double lowestHours = 0;
+        int lowestDay = start;
+        double lowestHours = entries.get(start).getSleepTime();
         
         for (int i = start; i < entries.size(); i++)
         {
@@ -85,7 +85,7 @@ public class SleepAnalyzer
                 lowestHours = entries.get(i).getSleepTime();
             }
         }
-        System.out.println("Lowest sleep day is " + (lowestDay + 1));
+        System.out.println("Lowest Sleep Hours were on Day " + (lowestDay + 1));
     }
 
     public void recommendationSystem() {
@@ -101,7 +101,7 @@ public class SleepAnalyzer
        if(latestEntry.getSleepTime() < 7 
            && latestEntry.getEnergy().equals("low")) {
            System.out.println("You slept less than 7 hours and reported low enery. "
-           + "Try getting more sleep to improve your moood. "
+           + "Try getting more sleep to improve your mood. "
            + "The recommended amount for sleep is 7-9 hours");
        }
        
@@ -116,7 +116,7 @@ public class SleepAnalyzer
        }
        
        if (latestEntry.getSleepRating() < 5) {
-           System.out.println("You rated your sleep poorly " +
+           System.out.println("You rated your sleep poorly. " +
                "Try maintaining a more consistent sleep schedule");
        }
     }
