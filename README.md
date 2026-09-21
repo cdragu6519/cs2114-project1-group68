@@ -24,10 +24,11 @@ unzip cs2114-project1-group68-main.zip
 ```bash
 javac *.java
 ```
-4. Then run the MainMenu.java class.
+6. Then run the MainMenu.java class.
 ```bash
 java MainMenu
 ```
+7. Additionally, you will need to have the student.jar import to run some of our test classes. 
 
 ## Link for this repo 
 [Sleepify Repo](https://github.com/cdragu6519/cs2114-project1-group68)
