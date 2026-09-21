@@ -11,7 +11,7 @@
 ## System Diagram
 ![Alternative Text](systemDiag.png)
 
-## How to Compile
+## How to Compile ( Works for Linux, Windows, macOS )
 
 1. Download the repository.
 2. Open a terminal.
