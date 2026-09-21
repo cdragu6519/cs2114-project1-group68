@@ -15,7 +15,7 @@
 
 1. Download the repository.
 2. Open a terminal.
-3. Go to the folder containing the download
+3. Go to the folder containing the download ( likely cd Downloads ). 
 4. Once in the correct folder, unzip the project.
 ```bash
 unzip cs2114-project1-group68-main.zip
