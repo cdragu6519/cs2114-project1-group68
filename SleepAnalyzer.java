@@ -43,7 +43,7 @@ public class SleepAnalyzer
         int numberOfDays = entries.size() - start;
         
         System.out.println("Average Sleep for Past " + numberOfDays + " Days: " 
-            + (hours/numberOfDays));
+            + Math.round(hours/numberOfDays) + " hours");
     }
     
     /**
