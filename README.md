@@ -13,14 +13,21 @@
 
 ## How to Compile
 
-1. Download or clone the repository.
-2. Open a terminal or command prompt in the project directory.
-3. Compile all Java source files:
-
+1. Download the repository.
+2. Open a terminal.
+3. Go to the folder containing the download
+4. Once in the correct folder, unzip the project.
+```bash
+unzip cs2114-project1-group68-main.zip
+```
+5. Compile all Java source files:
 ```bash
 javac *.java
 ```
-4. Then run the MainMenu.java class
+4. Then run the MainMenu.java class.
+```bash
+java MainMenu
+```
 
 ## Link for this repo 
 [Sleepify Repo](https://github.com/cdragu6519/cs2114-project1-group68)
