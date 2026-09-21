@@ -1,9 +1,16 @@
- package sleepify;
+package sleepify;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
+// -------------------------------------------------------------------------
+/**
+ *  MainMenu Class
+ * 
+ *  @author catherinearockia
+ *  @version Sep 21, 2026
+ */
 public class MainMenu {
     
     
@@ -300,11 +307,11 @@ public class MainMenu {
              sleepTimes.add(entry.getSleepTime());
              }
 
-         SleepAnalyzer sleepanalyzer = new SleepAnalyzer(storeAllUserInput);
-         sleepanalyzer.averageSleep();
-         sleepanalyzer.highestSleepDay();
-         sleepanalyzer.lowestSleepDay();
-         sleepanalyzer.recommendationSystem();
+         SleepAnalyzer sleepAnalyzer = new SleepAnalyzer(storeAllUserInput);
+         sleepAnalyzer.averageSleep();
+         sleepAnalyzer.highestSleepDay();
+         sleepAnalyzer.lowestSleepDay();
+         sleepAnalyzer.recommendationSystem();
          
          }
         
