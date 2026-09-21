@@ -87,4 +87,37 @@ public class SleepAnalyzer
         }
         System.out.println("Lowest sleep day is " + (lowestDay + 1));
     }
+
+    public String reccomendatiionSystem() {
+        ArrayList<UserInput> entries = sleepData.getEntries();
+        
+        if(entries.isEmpty()) {
+            return "Not enough data to generate recommendations.";
+        }
+        
+        //creating variable for most recent entries 
+       UserInput latestEntry = entries.get(entries.size() - 1);
+       
+       if(latestEntry.getSleepTime() < 7 
+           && latestEntry.getEnergy().equals("low")) {
+           return "You slept less than 7 hours and reported low enery."
+               + "Try getting more sleep to improve your moood. The recommended"
+               + "amount for sleep is 7-9 hours";
+       }
+       
+       if(latestEntry.getWokenUp() > 3) {
+           return "You woke up several times during the night"
+               + "Consider improving your sleeping enviornment";
+       }
+       
+       if(latestEntry.getSleepTime() >= 7 
+           && latestEntry.getEnergy().equals("high")) {
+           return "Your sleep habits appear healthy. Keep it up!";
+       }
+       
+       if (latestEntry.getSleepRating() < 5) {
+           return "You rated your sleep poorly" +
+               "Try maintaining a more consistent sleep schedule";
+       }
+    }
 }
