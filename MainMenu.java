@@ -1,4 +1,4 @@
-package sleepify;
+ package sleepify;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,12 +9,15 @@ public class MainMenu {
     
         private StoreAllUserInput storeAllUserInput;
         private InputValidator inputValidator;
-        private SleepAnalyzer sleepAnalyzer;
         private CSVManager csvManager;
         private Scanner scanner;
  
         
     
+        // ----------------------------------------------------------
+        /**
+         * Creates an instance of MainMenu();
+         */
         public MainMenu()  {
             
             storeAllUserInput = new StoreAllUserInput();
@@ -24,7 +27,15 @@ public class MainMenu {
         }
      
 
-        private boolean validateType(String input, String type, String question) {
+        // ----------------------------------------------------------
+        /**
+         * Validates the user's input by checking data entry type and if it fits question-specific requirements
+         * @param input
+         * @param type
+         * @param question
+         * @return boolean
+         */
+        public boolean validateType(String input, String type, String question) {
 
             //sets up temporary input variables inputD and inputI to check if inputValidator (question specific testing) will return as true/false
             double inputD = 0.0;
@@ -69,7 +80,7 @@ public class MainMenu {
                     inputI = Integer.parseInt(input);
                     if (question.equals("validateSleepRating")) {
                         if(!inputValidator.validateSleepRating(inputI)) {
-                            System.out.println("Sorry, your input isn't in our range. Please try again: ");
+                            System.out.println("Sorry, your input isn't in the range 0-10. Please try again: ");
                             return false;
                         }    
                         
@@ -77,7 +88,7 @@ public class MainMenu {
                     
                     if (question.equals("validateWokenUp")) {
                         if(!inputValidator.validateSleepRating(inputI)) {
-                            System.out.println("Sorry, you have entered a number out of range (0-25). Please try again: ");
+                            System.out.println("Sorry, your input isn't in the range 0-25. Please try again: ");
                             return false;
                         }    
                         
@@ -106,10 +117,14 @@ public class MainMenu {
             //all validation is working, above return statement isn't needed but avoids Syntax errors
         }
         
+        // ----------------------------------------------------------
+        /**
+         * Starts the actual sleepify app
+         */
         public void startProgram() {
             boolean run = true;
             System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
-            System.out.println("*            ~ welcome to sleepify ~             *");
+            System.out.println("*       ~ welcome to sleepify ~        *");
             System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             
             while (run) {
@@ -145,9 +160,13 @@ public class MainMenu {
                 }
         }
         
+        // ----------------------------------------------------------
+        /**
+         * Creates a sleep entry (one night of sleep's data)
+         */
         public void createEntry() {
             
-            //booleans to help check if the entries are valid. if false, runs validateType(), if true, exits assigned loop.
+            //booleans to help check if the entries are valid. if false, runs validateType(). if true, exits assigned loop.
             
             boolean sleepCheck = false;
             boolean wokenUpCheck = false;
@@ -179,7 +198,7 @@ public class MainMenu {
             // logic is applied for all questions except dream log.
             
             while (sleepCheck == false) {
-                System.out.println("Please enter the amount of sleep (to the nearest hour) you got last night: "); 
+                System.out.println("Please enter the amount of sleep (decimal or whole number, no letters) you got last night: "); 
                 userInput = scanner.nextLine();
   
                 while (!validateType(userInput, "double","validateSleepHour")) {                    
@@ -260,6 +279,10 @@ public class MainMenu {
         }
 
         
+        // ----------------------------------------------------------
+        /**
+         * Displays sleep statistics
+         */
         public void viewStats() {
          ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
             
@@ -268,6 +291,7 @@ public class MainMenu {
                  + "from you. Come back for your statistics after seven days!");
              }
          
+         System.out.println("");
          System.out.println("Welcome to your sleep summary.");
          ArrayList<UserInput> entries = storeAllUserInput.getEntries();
          ArrayList<Double> sleepTimes = new ArrayList<>();
@@ -280,10 +304,15 @@ public class MainMenu {
          sleepanalyzer.averageSleep();
          sleepanalyzer.highestSleepDay();
          sleepanalyzer.lowestSleepDay();
+         sleepanalyzer.recommendationSystem();
          
          }
         
         
+        // ----------------------------------------------------------
+        /**
+         * Saves any new sleep entries into the csv file
+         */
         public void saveRecords() {
             ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
             
@@ -292,7 +321,7 @@ public class MainMenu {
           //  }
             
             csvManager.saveEntries(sleepEntries);
-            System.out.println("Your sleep records have been saved! Sweet dreams!");
+            System.out.println("Your sleep records have been saved!");
         }
         
         public static void main(String[] args) {
