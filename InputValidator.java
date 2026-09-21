@@ -37,14 +37,13 @@ public class InputValidator
      */
     public Boolean validateSkip(String s)
     {
-        if (s.equals("skip"))
+        if (s.equalsIgnoreCase("skip"))
         {
             return true;
         }
         return false;
     }
     
-    // ----------------------------------------------------------
     /**
      * Determines whether the user has entered valid sleep hour and not exceed
      * 24 hours a day. 
@@ -53,7 +52,7 @@ public class InputValidator
      */
     public Boolean validateSleepHour(int hour)
     {
-        if (hour <= 24)
+        if (hour <= 24 && hour >= 0)
         {
             return true;
         }
@@ -67,15 +66,29 @@ public class InputValidator
      */
     public Boolean validateEnergyLevel(String energyLevel)
     {
-        if (energyLevel.equals("low"))
+        if (energyLevel.equalsIgnoreCase("low"))
         {
             return true;
         }
-        else if (energyLevel.equals("medium"))
+        else if (energyLevel.equalsIgnoreCase("medium"))
         {
             return true;
         }
-        else if (energyLevel.equals("high"))
+        else if (energyLevel.equalsIgnoreCase("high"))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Determines whether the user has entered valid number of times wokenUp
+     * @param wokenUp number of times woken up.
+     * @return boolean result of whether the number of woken up is valid.
+     */
+    public Boolean validateWokenUp(int wokenUp)
+    {
+        if (wokenUp <= 25 && wokenUp >= 0)
         {
             return true;
         }
