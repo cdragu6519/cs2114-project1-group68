@@ -2,9 +2,6 @@
 
 # Sleepify
 
-## Project Overview
-This application collects and analyzes sleep-related data entered by users. It provides sleep analysis, input validation, data storage, and CSV management functionality.
-
 ## Team Members
 - CarolineCollier
 - Yug Patel
