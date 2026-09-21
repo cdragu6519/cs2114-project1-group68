@@ -1,4 +1,5 @@
 package sleepify;
+
 // -------------------------------------------------------------------------
 /**
  *  UserInput class
@@ -24,7 +25,7 @@ public class UserInput {
          * @param energy
          * @param dreamLog
          */
-        public UserInput(double sleepTime,int wokenUp, int sleepRating, String energy, String dreamLog) {
+        public UserInput(Double sleepTime,int wokenUp, int sleepRating, String energy, String dreamLog) {
             
             this.sleepTime = sleepTime;
             this.wokenUp = wokenUp;
