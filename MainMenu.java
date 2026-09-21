@@ -56,7 +56,7 @@ public class MainMenu {
                     }
                     return true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Sorry, your input isn't a number/skip. Please try again: ");
+                    System.out.println("Sorry, your input isn't a number. Please try again: ");
                     return false;
                 }
             }
@@ -84,7 +84,7 @@ public class MainMenu {
                     }
                     return true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Sorry, your input isn't a number/skip. Please try again: ");
+                    System.out.println("Sorry, your input isn't a number. Please try again: ");
                     return false;
                 }
             }
@@ -109,7 +109,7 @@ public class MainMenu {
         public void startProgram() {
             boolean run = true;
             System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
-            System.out.println("*       ~ welcome to sleepify ~        *");
+            System.out.println("*            ~ welcome to sleepify ~             *");
             System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             
             while (run) {
@@ -168,7 +168,7 @@ public class MainMenu {
             
             //greets user after selecting to create an entry
             
-            System.out.println("Welcome! Please enter, or type skip, to answer the following questions: " );
+            System.out.println("Welcome! Please answer following questions: " );
             System.out.println("");
             
             // while loop outer checks to see if entry is valid based off of sleepCheck
