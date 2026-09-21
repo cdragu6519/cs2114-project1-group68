@@ -25,7 +25,7 @@ class UserInputTest {
     @BeforeEach
     public void setUp() {
         
-        mock = new UserInput(8.5,2,9, "high", "running around in a field of flowers");
+        mock = new UserInput(8.0,2,9, "high", "running around in a field of flowers");
         
     }
     
@@ -38,7 +38,7 @@ class UserInputTest {
     @Test
     public void testSleepTime() {
         
-        assertEquals(8.5, mock.getSleepTime(),0.01);
+        assertEquals(8, mock.getSleepTime());
         System.out.println(mock.getSleepTime());
     }
     
