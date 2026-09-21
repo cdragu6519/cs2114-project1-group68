@@ -50,7 +50,7 @@ public class InputValidator
      * @param hour number of hours slept.
      * @return boolean result of whether the number of sleep is valid.
      */
-    public Boolean validateSleepHour(int hour)
+    public Boolean validateSleepHour(double hour)
     {
         if (hour <= 24 && hour >= 0)
         {
