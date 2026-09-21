@@ -43,6 +43,7 @@ public class MainMenu {
                 //***** THIS LOGIC IS APPLIED FOR EXPECTED STRING, DOUBLE, AND INT PARAMETERS.
             
             
+            
             if (type.equals("double")) {
                 try {
                     inputD = Double.parseDouble(input);
@@ -131,6 +132,7 @@ public class MainMenu {
                         break;
                     case "3":
                         saveRecords();
+                        break;
                     case "4":
                         run = false;
                         System.out.println("");
@@ -274,7 +276,7 @@ public class MainMenu {
              sleepTimes.add(entry.getSleepTime());
              }
 
-         SleepAnalyzer sleepanalyzer = new SleepAnalyzer(sleepTimes);
+         SleepAnalyzer sleepanalyzer = new SleepAnalyzer(storeAllUserInput);
          sleepanalyzer.averageSleep();
          sleepanalyzer.highestSleepDay();
          sleepanalyzer.lowestSleepDay();
@@ -285,9 +287,9 @@ public class MainMenu {
         public void saveRecords() {
             ArrayList<UserInput> sleepEntries = storeAllUserInput.getEntries();
             
-            for (UserInput entry : sleepEntries) {
-                System.out.println(entry);
-            }
+           // for (UserInput entry : sleepEntries) {
+         //       System.out.println(entry);
+          //  }
             
             csvManager.saveEntries(sleepEntries);
             System.out.println("Your sleep records have been saved! Sweet dreams!");
